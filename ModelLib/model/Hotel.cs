@@ -11,6 +11,7 @@ namespace ModelLib.model
         private int _id;
         private String _name;
         private String _address;
+        private String _facility;
 
         // HUSK ALTID EN DEFAULT konstruktør til JSON
         public Hotel()
@@ -42,9 +43,15 @@ namespace ModelLib.model
             set => _address = value;
         }
 
+        public string Facility
+        {
+            get => _facility; 
+            set => _facility = value;
+        }
+
         public override string ToString()
         {
-            return $"{nameof(Id)}: {Id}, {nameof(Name)}: {Name}, {nameof(Address)}: {Address}";
+            return $"{nameof(Id)}: {Id}, {nameof(Name)}: {Name}, {nameof(Address)}: {Address}, {nameof(Facility)}: {Facility}";
         }
     }
 
