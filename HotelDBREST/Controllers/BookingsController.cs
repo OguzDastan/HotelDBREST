@@ -10,7 +10,7 @@ using ModelLib.model;
 namespace HotelDBREST.Controllers
 {
     
-
+    //
     public class BookingsController : ApiController
     {
         private static IManage<Booking> manager = new ManageBooking();
