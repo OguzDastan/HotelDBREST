@@ -28,7 +28,7 @@ namespace HotelDBREST.DBUtil
 
             while (reader.Read())
             {
-                Facility facility = ReadHotel(reader);
+                Facility facility = ReadFacility(reader);
                 liste.Add(facility);
             }
             reader.Close();
