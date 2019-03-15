@@ -11,7 +11,7 @@ namespace ClassDemoRestConsumer
     internal class Worker
     {
 
-        private const string URI = "http://localhost:50935/api/Hotels";
+        private const string URI = "http://localhost:50935/API/Facility";
 
         public Worker()
         {
@@ -20,13 +20,13 @@ namespace ClassDemoRestConsumer
 
         public void Start()
         {
-            List<Hotel> hotels = GetAll();
+            List<Facility> hotels = GetAll();
 
             foreach (var hotel in hotels)
             {
                 Console.WriteLine("Hotel:: " + hotel);
             }
-
+            /*
             Console.WriteLine("Henter nummer 55");
             Console.WriteLine("Hotel :: " + GetOne(55));
 
@@ -42,23 +42,24 @@ namespace ClassDemoRestConsumer
 
             Console.WriteLine("Opdaterer nr 50");
             Console.WriteLine("Resultat = " + Put(50, new Hotel(50, "Pouls", "Hillerød")));
+            */
         }
 
 
-        private List<Hotel> GetAll()
+        private List<Facility> GetAll()
         {
-            List<Hotel> hoteller = new List<Hotel>();
+            List<Facility> facilities = new List<Facility>();
 
             using (HttpClient client = new HttpClient())
             {
                 Task<string> resTask = client.GetStringAsync(URI);
                 String jsonStr = resTask.Result;
 
-                hoteller = JsonConvert.DeserializeObject<List<Hotel>>(jsonStr);
+                facilities = JsonConvert.DeserializeObject<List<Facility>>(jsonStr);
             }
 
 
-            return hoteller;
+            return facilities;
         }
 
 
@@ -103,13 +104,13 @@ namespace ClassDemoRestConsumer
             return ok;
         }
 
-        private bool Post(Hotel hotel)
+        public bool Post(Facility facility)
         {
             bool ok = true;
 
             using (HttpClient client = new HttpClient())
             {
-                String jsonStr = JsonConvert.SerializeObject(hotel);
+                String jsonStr = JsonConvert.SerializeObject(facility);
                 StringContent content = new StringContent(jsonStr, Encoding.ASCII, "application/json");
 
                 Task<HttpResponseMessage> postAsync = client.PostAsync(URI, content);
