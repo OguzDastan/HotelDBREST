@@ -10,7 +10,6 @@ namespace ModelLib.model
     {
         private int _id;
         private string _name;
-        private int _antal;
 
         public string Name
         {
@@ -23,16 +22,16 @@ namespace ModelLib.model
             get => _id; 
             set => _id = value;
         }
-        public int Antal
+
+        public Facility()
         {
-            get => _antal;
-            set => _antal = value;
+            
         }
 
         public Facility(int id, string name)
         {
-            id = Id;
-            name = Name;
+            id = _id;
+            name = _name;
         }
         public override string ToString()
         {

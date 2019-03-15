@@ -7,12 +7,12 @@ using ModelLib.model;
 
 namespace HotelDBREST.DBUtil
 {
-    public class ManageFacility
+    public class ManageFacility : IManage<Facility>
     {
         private const String GET_ALL = "SELECT * from DemoFacility";
         private const String GET_ONE = "SELECT * from DemoFacility WHERE Facility_No = @ID";
         private const String DELETE = "DELETE from DemoFacility WHERE Facility_No = @ID";
-        private const String INSERT = "INSERT INTO DemoFacility values (@ID, @Name";
+        private const String INSERT = "INSERT INTO DemoFacility values (@ID, @Name)";
         private const String UPDATE = "UPDATE DemoFacility " +
                                       "SET Facility_No = @FacilityNo, Name = @Name " +
                                       "WHERE Facility_No = @ID";
@@ -57,7 +57,10 @@ namespace HotelDBREST.DBUtil
 
         private Facility ReadFacility(SqlDataReader reader)
         {
-            Facility facility = new Facility(reader.GetInt32(0), reader.GetString(1));
+            Facility facility = new Facility();
+
+            facility.Id = reader.GetInt32(0);
+            facility.Name = reader.GetString(1);
 
             return facility;
         }

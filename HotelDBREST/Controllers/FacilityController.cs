@@ -4,36 +4,45 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using HotelDBREST.DBUtil;
+using ModelLib.model;
 
 namespace HotelDBREST.Controllers
 {
     public class FacilityController : ApiController
     {
-        // GET: api/Facility
-        public IEnumerable<string> Get()
+        private static IManage<Facility> manager = new ManageFacility();
+
+
+        // GET: api/Hotels
+        public IEnumerable<Facility> Get()
         {
-            return new string[] { "value1", "value2" };
+            return manager.Get();
         }
 
-        // GET: api/Facility/5
-        public string Get(int id)
+        // GET: api/Hotels/5
+        public Facility Get(int id)
         {
-            return "value";
+            return manager.Get(id);
         }
 
-        // POST: api/Facility
-        public void Post([FromBody]string value)
+        // POST: api/Hotels
+        public bool Post([FromBody]Facility facility)
         {
+            return manager.Post(facility);
+
         }
 
-        // PUT: api/Facility/5
-        public void Put(int id, [FromBody]string value)
+        // PUT: api/Hotels/5
+        public bool Put(int id, [FromBody]Facility facility)
         {
+            return manager.Put(id, facility);
         }
 
-        // DELETE: api/Facility/5
-        public void Delete(int id)
+        // DELETE: api/Hotels/5
+        public bool Delete(int id)
         {
+            return manager.Delete(id);
         }
     }
 }
